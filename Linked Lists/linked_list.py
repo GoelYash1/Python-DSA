@@ -10,15 +10,41 @@ class LinkedList:
         self.tail = new_node
         self.length = 1
 
+    def prepend(self, value):
+        new_node = Node(value)
+        if self.length ==0:
+            self.tail = new_node
+        else:
+            new_node.next = self.head
+        self.head = new_node
+        self.length += 1
+        return True
+
     def append(self, value):
         new_node = Node(value)
         if self.length == 0:
             self.head = new_node
-            self.tail = new_node
         else:
             self.tail.next = new_node
-            self.tail = new_node
+        self.tail = new_node
         self.length += 1
+        return True
+
+    def insert(self, index, value):
+        new_node = Node(value)
+        if index < 0 or index > self.length:
+            return False
+        if index == 0:
+            return self.prepend(value)
+        if index == self.length:
+            return self.append(value)
+        current = self.head
+        for _ in range(index - 1):
+            current = current.next
+        new_node.next = current.next
+        current.next = new_node
+        self.length += 1
+        return True
 
     def pop(self):
         if self.length == 0:
@@ -38,27 +64,65 @@ class LinkedList:
         self.tail = current
         self.length -= 1
         return popped_node
-
-    def insert(self, value, index):
-        pass
+    
+    def pop_first(self):
+        if self.length == 0:
+            return Node(None)
+        current_node = self.head
+        self.head = self.head.next
+        current_node.next = None
+        self.length -= 1
+        if self.length == 0:
+            self.tail = None
+        return current_node
 
     def remove(self, index):
-        pass
+        if index < 0 or index >= self.length:
+            return Node(None)
+        if index == 0:
+            return self.pop_first()
+        if index == self.length - 1:
+            return self.pop()
+        current = self.head
+        for _ in range(index - 1):
+            current = current.next
+        removed_node = current.next
+        current.next = removed_node.next
+        removed_node.next = None
+        self.length -= 1
+        return removed_node
+    
+    def get(self, index):
+        if index < 0 or index >= self.length:
+            return Node(None)
+        current = self.head
+        for _ in range(index):
+            current = current.next
+        return current
 
-    def prepend(self, value):
-        new_node = Node(value)
-        if self.length ==0:
-            self.tail = new_node
-        else:
-            new_node.next = self.head
-        self.head = new_node
-        self.length += 1
+    def set_value(self, index, value):
+        temp = self.get(index)
+        if temp.value is None:
+            return False
+        temp.value = value
+        return True
+
+    def reverse(self):
+        prev = None
+        current = self.head
+        while current:
+            next = current.next
+            current.next = prev
+            prev = current
+            current = next
+        self.head = prev
 
     def print_list(self):
         current = self.head
         while current:
             print(current.value,end=" -> ")
             current = current.next
+        print("\n")
 
 # Create a linked list and test the methods
 my_linked_list = LinkedList(4)
@@ -66,23 +130,76 @@ my_linked_list = LinkedList(4)
 # Append some values
 my_linked_list.append(5)
 my_linked_list.append(6)
+print("After appending:")
+my_linked_list.print_list()
 
 # Prepend some values
 my_linked_list.prepend(3)
 my_linked_list.prepend(2)
 my_linked_list.prepend(1)
+print("After prepending:")
+my_linked_list.print_list()
 
-# Print the list
+# Insert some values
+my_linked_list.insert(1,10)
+print("After inserting at indexition 1:")
+my_linked_list.print_list()
+
+# Insert at a random indexition
+my_linked_list.insert(3,20)
+print("After inserting at indexition 3:")
+my_linked_list.print_list()
+
+# Insert at the end
+my_linked_list.insert(10,30)
+print("After inserting at indexition 10 (out of index):")
+my_linked_list.print_list()
+
+# reverse the linked list
+print("Reversing the linked list:")
+my_linked_list.reverse()
 my_linked_list.print_list()
 
 # Pop some values
-print("\nPopped:", my_linked_list.pop().value)
+print("Popped:", my_linked_list.pop().value)
 my_linked_list.print_list()
 
 # Pop again
-print("\nPopped:", my_linked_list.pop().value)
+print("Popped:", my_linked_list.pop().value)
 my_linked_list.print_list()
 
 # Pop again
-print("\nPopped:", my_linked_list.pop().value)
+print("Popped:", my_linked_list.pop().value)
+my_linked_list.print_list()
+
+# Pop first
+print("Popped first:", my_linked_list.pop_first().value)
+my_linked_list.print_list()
+
+# Remove at index 1
+print("Removed at index 1:", my_linked_list.remove(1).value)
+my_linked_list.print_list()
+
+# Remove at index 0
+print("Removed at index 0:", my_linked_list.remove(0).value)
+my_linked_list.print_list()
+
+# Remove at index 1
+print("Removed at index 1:", my_linked_list.remove(1).value)
+my_linked_list.print_list()
+
+# Append some values
+my_linked_list.append(7)
+my_linked_list.append(8)
+my_linked_list.append(9)
+print("After appending:")
+my_linked_list.print_list()
+
+# get some values
+print("Get at index 0:", my_linked_list.get(0).value)
+print("Get at index 1:", my_linked_list.get(1).value)
+
+# set value at index 2
+print("Set at index 2:", my_linked_list.set_value(2, 100))
+print("After setting at index 2:")
 my_linked_list.print_list()
