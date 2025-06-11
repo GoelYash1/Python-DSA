@@ -25,7 +25,7 @@ class ReverseBetweenLinkedList(LinkedList):
             current.next = prev.next
             prev.next = current
             current = next_node
-        
+           
         tail.next = current
         self.head = dummy.next
 
