@@ -24,7 +24,7 @@ class Stack:
     def print_stack(self):
         current = self.top
         while current:
-            print(current.value, end=" ")
+            print(current.value, end="->")
             current = current.next
         print()
 
@@ -41,4 +41,10 @@ if __name__ == "__main__":
     my_stack.print_stack()
 
     print("Top element:", my_stack.top.value)
+
+    popped_value = my_stack.pop()
+    print("Popped value:", popped_value)
+    print("Stack height after pop:", my_stack.height)
+    print("Stack contents after pop:")
+    my_stack.print_stack()
         
