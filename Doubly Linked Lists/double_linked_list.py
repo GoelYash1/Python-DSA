@@ -131,72 +131,74 @@ class DoublyLinkedList:
             print(current.value, end=" <-> " if current.next else "\n")
             current = current.next
 
-# Initializing the doubly linked list with a single value
-my_doublely_linked_list = DoublyLinkedList(1)
 
-print("Initial doubly linked list:")
-my_doublely_linked_list.print_list()
+if __name__ == "__main__":
+    # Initializing the doubly linked list with a single value
+    my_doublely_linked_list = DoublyLinkedList(1)
 
-# Appending values to the doubly linked list
-print("\nAppending values to the doubly linked list:")
-my_doublely_linked_list.append(2)
-my_doublely_linked_list.append(3)
-my_doublely_linked_list.append(4)
-
-my_doublely_linked_list.print_list()
-
-# Popping the last value from the doubly linked list
-print("\nPopping the last value from the doubly linked list:")
-popped_node = my_doublely_linked_list.pop()
-
-if popped_node:
-    print(f"Popped value: {popped_node.value}")
+    print("Initial doubly linked list:")
     my_doublely_linked_list.print_list()
 
-# Prepending values to the doubly linked list
-print("\nPrepending values to the doubly linked list:")
-my_doublely_linked_list.prepend(0)
-my_doublely_linked_list.prepend(-1)
-my_doublely_linked_list.print_list()
+    # Appending values to the doubly linked list
+    print("\nAppending values to the doubly linked list:")
+    my_doublely_linked_list.append(2)
+    my_doublely_linked_list.append(3)
+    my_doublely_linked_list.append(4)
 
-# Popping the first value from the doubly linked list
-print("\nPopping the first value from the doubly linked list:")
-popped_first_node = my_doublely_linked_list.pop_first()
-if popped_first_node:
-    print(f"Popped first value: {popped_first_node.value}")
     my_doublely_linked_list.print_list()
 
-# Getting a node at a specific index
-print("\nGetting node at index 1:")
-node_at_index = my_doublely_linked_list.get(1)
-if node_at_index:
-    print(f"Node at index 1: {node_at_index.value}")
+    # Popping the last value from the doubly linked list
+    print("\nPopping the last value from the doubly linked list:")
+    popped_node = my_doublely_linked_list.pop()
 
-# Getting a node from second half of the list
-print("\nGetting node from the 2nd half of the list:")
-node_at_2nd_index = my_doublely_linked_list.get(2)
-if node_at_2nd_index:
-    print(f"Node at 2nd index: {node_at_2nd_index.value}")
+    if popped_node:
+        print(f"Popped value: {popped_node.value}")
+        my_doublely_linked_list.print_list()
 
-# Setting a value at a specific index
-print("\nSetting value at index 1 to 10:")
-set_result = my_doublely_linked_list.set_value(1, 10)
-if set_result:
-    print("Value set successfully.")
+    # Prepending values to the doubly linked list
+    print("\nPrepending values to the doubly linked list:")
+    my_doublely_linked_list.prepend(0)
+    my_doublely_linked_list.prepend(-1)
     my_doublely_linked_list.print_list()
 
-# Inserting a value at a specific index
-print("\nInserting value 5 at index 2:")
-insert_result = my_doublely_linked_list.insert(2, 5)
-if insert_result:
-    print("Value inserted successfully.")
-    my_doublely_linked_list.print_list()
+    # Popping the first value from the doubly linked list
+    print("\nPopping the first value from the doubly linked list:")
+    popped_first_node = my_doublely_linked_list.pop_first()
+    if popped_first_node:
+        print(f"Popped first value: {popped_first_node.value}")
+        my_doublely_linked_list.print_list()
 
-# Removing a value at a specific index
-print("\nRemoving value at index 2:")
-remove_result = my_doublely_linked_list.remove(2)
-if remove_result:
-    print(f"Removed value: {remove_result.value}")
-    my_doublely_linked_list.print_list()
+    # Getting a node at a specific index
+    print("\nGetting node at index 1:")
+    node_at_index = my_doublely_linked_list.get(1)
+    if node_at_index:
+        print(f"Node at index 1: {node_at_index.value}")
+
+    # Getting a node from second half of the list
+    print("\nGetting node from the 2nd half of the list:")
+    node_at_2nd_index = my_doublely_linked_list.get(2)
+    if node_at_2nd_index:
+        print(f"Node at 2nd index: {node_at_2nd_index.value}")
+
+    # Setting a value at a specific index
+    print("\nSetting value at index 1 to 10:")
+    set_result = my_doublely_linked_list.set_value(1, 10)
+    if set_result:
+        print("Value set successfully.")
+        my_doublely_linked_list.print_list()
+
+    # Inserting a value at a specific index
+    print("\nInserting value 5 at index 2:")
+    insert_result = my_doublely_linked_list.insert(2, 5)
+    if insert_result:
+        print("Value inserted successfully.")
+        my_doublely_linked_list.print_list()
+
+    # Removing a value at a specific index
+    print("\nRemoving value at index 2:")
+    remove_result = my_doublely_linked_list.remove(2)
+    if remove_result:
+        print(f"Removed value: {remove_result.value}")
+        my_doublely_linked_list.print_list()
 
 
