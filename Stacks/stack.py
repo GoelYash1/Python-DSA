@@ -7,19 +7,36 @@ class Stack:
     def __init__(self,value):
         self.top = Node(value)
         self.height = 1
+
     def push(self, value):
         new_node = Node(value)
-        new_node.next = self.top
-        self.top = new_node
+        if self.height == 0:
+            self.top = new_node
+        else:
+            new_node.next = self.top
+            self.top = new_node
         self.height += 1
     
     def pop(self):
         if self.height == 0:
-            raise IndexError("Pop from empty stack")
-        popped_value = self.top.value
+            return None
+        popped_node = self.top
         self.top = self.top.next
+        popped_node.next = None
         self.height -= 1
-        return popped_value
+        return popped_node
+    
+    def peek(self):
+        if self.height == 0:
+            return None
+        return self.top
+    
+    def is_empty(self):
+        return self.height == 0
+    
+    def clear(self):
+        self.top = None
+        self.height = 0
     
     def print_stack(self):
         current = self.top
