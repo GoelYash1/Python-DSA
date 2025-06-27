@@ -4,9 +4,9 @@ class Node:
         self.next = None
 
 class Stack:
-    def __init__(self,value):
-        self.top = Node(value)
-        self.height = 1
+    def __init__(self):
+        self.top = None
+        self.height = 0
 
     def push(self, value):
         new_node = Node(value)
@@ -48,7 +48,8 @@ class Stack:
 
 # example usage
 if __name__ == "__main__":
-    my_stack = Stack(1)
+    my_stack = Stack()
+    my_stack.push(1)
     my_stack.push(2)
     my_stack.push(3)
     my_stack.push(4)
@@ -60,7 +61,7 @@ if __name__ == "__main__":
     print("Top element:", my_stack.top.value)
 
     popped_value = my_stack.pop()
-    print("Popped value:", popped_value)
+    print("Popped value:", popped_value.value)
     print("Stack height after pop:", my_stack.height)
     print("Stack contents after pop:")
     my_stack.print_stack()
